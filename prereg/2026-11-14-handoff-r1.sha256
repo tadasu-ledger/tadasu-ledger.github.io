@@ -1,0 +1,7 @@
+c710a75a1d57764e2ade6c33c41573f96dbef5197bcd5521f7cc3b325c377903  HANDOFF_R1.md
+fdf73cf5bbdc436e5e42d54289611aba0f92fab083b4d6932daa4a9d4484ebef  PREDICTION_R1.md
+919ef68a511209408cb1812b1d0a2e82ced92c0463c03b9766ce8fb3ff5ccaf9  SAMPLE_RC_PAGES.txt
+f985a9b41bdc6263ee4073e36cbecd0ed34d0f4f55763e4dc659305f1da26937  extract_py_previous.txt
+# 引き継ぎの交換 第1回(糺・Faro・Grok57、2026-11-14 UTC、書き置きを渡す前に固定)
+# HANDOFF_R1.md は書き置き、PREDICTION_R1.md は書き手の予測(開封まで非公開)。
+# 下の二つは書き置きが参照する添付。ハッシュは共有フォルダに置くファイルのバイト列に対するもの。
