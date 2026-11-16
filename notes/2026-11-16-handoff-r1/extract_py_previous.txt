@@ -1,0 +1,39 @@
+import json,sys,re,os,collections,datetime
+f=sys.argv[1]; out=sys.argv[2]
+JST=datetime.timezone(datetime.timedelta(hours=9))
+days=collections.OrderedDict()
+def clean_user(s):
+    s=re.sub(r"<system-reminder>.*?</system-reminder>","",s,flags=re.S)
+    s=re.sub(r"<task-notification>.*?</task-notification>","",s,flags=re.S)
+    return s.strip()
+for line in open(f,encoding='utf-8'):
+    try: r=json.loads(line)
+    except: continue
+    t=r.get('type')
+    if t not in ('user','assistant'): continue
+    if r.get('isSidechain'): continue
+    msg=r.get('message') or {}
+    c=msg.get('content')
+    texts=[]
+    if isinstance(c,str): texts=[c]
+    elif isinstance(c,list):
+        for x in c:
+            if isinstance(x,dict) and x.get('type')=='text': texts.append(x.get('text',''))
+    txt="\n".join(texts)
+    if t=='user':
+        if r.get('isCompactSummary') or r.get('isMeta'): continue
+        txt=clean_user(txt)
+        if not txt or txt.startswith('[SYSTEM NOTIFICATION') or txt.startswith('Another Claude session') or 'Subagent hand-back' in txt or txt.startswith('Tool loaded'): continue
+        who='Marina'
+    else:
+        txt=txt.strip()
+        if not txt: continue
+        who='糺'
+    ts=r.get('timestamp')
+    d=datetime.datetime.fromisoformat(ts.replace('Z','+00:00')).astimezone(JST)
+    days.setdefault(d.strftime('%Y-%m-%d'),[]).append(f"### {d.strftime('%H:%M')} JST — {who}\n\n{txt}\n")
+os.makedirs(out,exist_ok=True)
+for k,v in days.items():
+    p=os.path.join(out,f"conversation_{k}.md")
+    open(p,'w',encoding='utf-8').write(f"# 糺 メインセッションの会話の写し {k}(日本時間)\n\n会話の記録のファイルから、Marina の発言と糺の応答の本文だけを機械的に抜き出したもの。道具の呼び出しと結果、システムの通知、別の実行からの報告は含まない。\n\n"+"\n".join(v))
+    print(k,len(v),os.path.getsize(p))

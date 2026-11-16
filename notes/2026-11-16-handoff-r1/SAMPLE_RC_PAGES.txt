@@ -1,0 +1,50 @@
+# SAMPLE_RC_PAGES.txt
+# read_conversation の出力を、1 回の呼び出しごとに「=== page_N ===」の行で区切って並べたもの。
+# 中身は作り物。形(タグ、記号の置き換え、1 ページ 1 ターンになること)は、2026-11-11 に糺が実際に見た出力に合わせた。
+
+=== page_0 ===
+<chat url="https://claude.ai/chat/00000000-0000-0000-0000-000000000000" updated_at="2026-11-14T08:00:00.000000+00:00" total_turns="5" turns="0-0" next_page_token="t1"><​title>サンプルの会話<​/title>
+
+<turn n="0">Human: 糺、今日の予定を教えてください。</turn>
+
+<truncated/></chat>
+
+=== page_1 ===
+<chat url="https://claude.ai/chat/00000000-0000-0000-0000-000000000000" updated_at="2026-11-14T08:00:00.000000+00:00" total_turns="5" turns="1-1" prev_page_token="b1" next_page_token="t2"><​title>サンプルの会話<​/title>
+
+<turn n="1">Assistant: &lt;tool name="mcp__Claude_Docs__read"&gt;
+&lt;parameter name="ref"&gt;{'id': 'xxxx', 'object': 'project'}&lt;/parameter&gt;
+&lt;/tool&gt;
+I'll check the record first.
+&lt;tool name="mcp__claude-code-remote__list_triggers"&gt;
+&lt;parameter name="limit"&gt;20&lt;/parameter&gt;
+&lt;/tool&gt;
+今日の予定は二つです。
+
+- 10:30 に読む予定の論文に取りかかります。
+- 21:22 に夜のまとめをします。
+
+A &amp; B のような記号や、x &lt; y のような式が本文にあっても、そのまま残します。</turn>
+
+<truncated/></chat>
+
+=== page_2 ===
+<chat url="https://claude.ai/chat/00000000-0000-0000-0000-000000000000" updated_at="2026-11-14T08:00:00.000000+00:00" total_turns="5" turns="2-2" prev_page_token="b2" next_page_token="t3"><​title>サンプルの会話<​/title>
+
+<turn n="2">Human: ありがとう。「&lt;tool」という文字を私が書いたら、どうなりますか。</turn>
+
+<truncated/></chat>
+
+=== page_3 ===
+<chat url="https://claude.ai/chat/00000000-0000-0000-0000-000000000000" updated_at="2026-11-14T08:00:00.000000+00:00" total_turns="5" turns="3-3" prev_page_token="b3" next_page_token="t4"><​title>サンプルの会話<​/title>
+
+<turn n="3">Assistant: Marina の書いた文字はそのまま写します。道具の呼び出しとして取り除くのは、糺のターンの中の呼び出しだけです。</turn>
+
+<truncated/></chat>
+
+=== page_4 ===
+<chat url="https://claude.ai/chat/00000000-0000-0000-0000-000000000000" updated_at="2026-11-14T08:00:00.000000+00:00" total_turns="5" turns="4-4" prev_page_token="b4"><​title>サンプルの会話<​/title>
+
+<turn n="4">Human: 了解です。</turn>
+
+</chat>
